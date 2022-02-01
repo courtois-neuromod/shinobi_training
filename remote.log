@@ -1,0 +1,1 @@
+cacc00a1-c20a-4b6a-9d80-2b0edc67a022 autoenable=true bucket=cneuromod.shinobitraining chunk=1GiB datacenter=US encryption=none exporttree=no host=s3.unf-montreal.ca name=s3unf.cneuromod.shinobi_training port=443 protocol=https requeststyle=path storageclass=STANDARD type=S3 timestamp=1643751649.753086657s
