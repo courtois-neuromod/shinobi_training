@@ -1,0 +1,13 @@
+{
+    "Training start timestamp": {
+        "sub-01": 1550181462,
+        "sub-02": 1562278107,
+        "sub-04": 1582497836,
+        "sub-06": 1565905126
+    },
+    "Maximum X position": {
+        "level-1": 12000,
+        "level-4": 9000,
+        "level-5": 11300
+    }
+}
