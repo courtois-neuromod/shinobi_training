@@ -101,7 +101,6 @@ def add_info_to_json(json_dict, repvars, dataset_info_path):
     Returns:
         dict: The updated JSON dictionary.
     """
-def add_info_to_json(json_dict, repvars, dataset_info_path):
     # create json sidecar
     info_dict = create_info_dict(repvars, dataset_info_path)
 
