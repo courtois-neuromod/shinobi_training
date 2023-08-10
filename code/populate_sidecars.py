@@ -27,17 +27,19 @@ def create_info_dict(repvars, dataset_info_path):
     Creates a dictionary containing information about a replay.
 
     Parameters:
-    repvars (dict): A dictionary containing replay variables.
+        repvars (dict): A dictionary containing replay variables.
+        dataset_info_path (str): The path to the dataset info JSON file.
 
     Returns:
-    dict: A dictionary containing information about the replay, including the subject ID, session ID, repetition level,
-    whether the level was cleared, the duration of the repetition, the final score, the amount of health lost, the percent
-    complete, and whether the repetition was fake or not.
+        dict: A dictionary containing information about the replay, including the subject ID, session ID, repetition level,
+        whether the level was cleared, the duration of the repetition, the final score, the amount of health lost, the percent
+        complete, and whether the repetition was fake or not.
     """
     # Init dict
     info_dict = {}
 
     # Add subject ID
+    replayfile = repvars["filename"]
     info_dict["SubjectID"] = replayfile.split("/")[-1].split("_")[0]
 
     # Add session ID
@@ -89,20 +91,22 @@ def create_info_dict(repvars, dataset_info_path):
 
 def add_info_to_json(json_dict, repvars, dataset_info_path):
     """
-    Adds information to a JSON dictionary and returns the updated dictionary.
+    Adds information to a JSON dictionary and returns it.
 
-    Args:
-    - json_dict (dict): A dictionary containing JSON data.
-    - repvars (dict): A dictionary containing replacement variables.
+    Parameters:
+        json_dict (dict): The JSON dictionary to be updated.
+        repvars (dict): A dictionary with the variables of one replay.
+        dataset_info_path (str): The path to the dataset information file.
 
     Returns:
-    - dict: A dictionary containing updated JSON data.
+        dict: The updated JSON dictionary.
     """
+def add_info_to_json(json_dict, repvars, dataset_info_path):
     # create json sidecar
     info_dict = create_info_dict(repvars, dataset_info_path)
 
     # Add number of days of training (uses info from the original json)
-    subject = replayfile.split("/")[-1].split("_")[0]
+    subject = repvars['filename'].split("/")[-1].split("_")[0]
     first_day = datetime.fromtimestamp(load_first_day_of_training(subject, dataset_info_path))
     current_day = datetime.fromtimestamp(json_dict["LevelStartTimestamp"])
     n_days_of_training = current_day - first_day
@@ -119,7 +123,7 @@ def load_max_pos(level, dataset_info_path):
 
     Args:
         level (int): The level for which to load the maximum X position.
-        path_to_data (str, optional): The path to the data directory. Defaults to shinobi_behav.DATA_PATH.
+        dataset_info_path (str): The path to the dataset info JSON file.
 
     Returns:
         float: The maximum X position for the given level.
@@ -135,7 +139,7 @@ def load_first_day_of_training(subject, dataset_info_path):
 
     Args:
         subject (str): The subject ID.
-        path_to_data (str): The path to the data directory. Defaults to `shinobi_behav.DATA_PATH`.
+        dataset_info_path (str): The path to the dataset info JSON file.
 
     Returns:
         str: The timestamp of the first day of training for the given subject.
