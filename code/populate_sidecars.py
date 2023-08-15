@@ -162,7 +162,7 @@ if __name__ == "__main__":
                 json_dict = json.load(infile)
             if "Cleared" not in json_dict.keys(): # Check if some key is in the dict
                 print('Processing {}'.format(replayfile))
-                repvars = get_variables_from_replay(replayfile, skip_first_step=False, save_gif=True, game="ShinobiIIIReturnOfTheNinjaMaster-Genesis", inttype=retro.data.Integrations.STABLE)
+                repvars = get_variables_from_replay(replayfile, skip_first_step=True, save_gif=True, game="ShinobiIIIReturnOfTheNinjaMaster-Genesis", inttype=retro.data.Integrations.STABLE)
                 json_dict = add_info_to_json(json_dict, repvars, dataset_info_path)
                 with open(replayfile.replace(".bk2", ".json"), "w") as outfile:
                     json.dump(json_dict, outfile, default=str)
